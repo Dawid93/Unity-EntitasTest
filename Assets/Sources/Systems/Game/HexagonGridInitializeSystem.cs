@@ -9,6 +9,7 @@ namespace Sources.Systems.Game
         public HexagonGridInitializeSystem(Contexts contexts)
         {
             _contexts = contexts;
+            
         }
         public void Initialize()
         {
@@ -19,6 +20,7 @@ namespace Sources.Systems.Game
                 {
                     var gameEntity = _contexts.game.CreateEntity();
                     gameEntity.AddPosition(new Vector2Int(j, i));
+                    gameEntity.isHexagon = true;
                 }
             }
         }
