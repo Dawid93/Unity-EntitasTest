@@ -12,20 +12,23 @@ public static class GameComponentsLookup {
     public const int Hexagon = 1;
     public const int Position = 2;
     public const int UiRoot = 3;
+    public const int View = 4;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
         "Globals",
         "Hexagon",
         "Position",
-        "UiRoot"
+        "UiRoot",
+        "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(GlobalsComponent),
         typeof(Sources.Components.HexagonComponent),
         typeof(Sources.Components.PositionComponent),
-        typeof(Sources.Components.UiRootComponent)
+        typeof(Sources.Components.UiRootComponent),
+        typeof(Sources.Components.ViewComponent)
     };
 }

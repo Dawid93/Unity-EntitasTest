@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sources.Systems.Game
 {
@@ -25,6 +26,7 @@ namespace Sources.Systems.Game
 
         protected override void Execute(List<GameEntity> entities)
         {
+            var globals = _contexts.game.globals;
             var hexagonPrefab = _contexts.game.globals.value.hexagonObject;
             var uiRoot = _contexts.game.uiRoot.value;
 
@@ -32,7 +34,21 @@ namespace Sources.Systems.Game
             {
                 var hexagon = GameObject.Instantiate(hexagonPrefab, uiRoot);
                 var rectTransform = hexagon.transform as RectTransform;
-                rectTransform.anchoredPosition = new Vector2(elem.position.value.x, elem.position.value.y);
+                var image = hexagon.GetComponent<Image>();
+                elem.AddView(hexagon);
+                
+                var position = new Vector2(elem.position.value.x * globals.value.widthSpacing, elem.position.value.y * globals.value.heightSpacing);
+                bool isEven = elem.position.value.x % 2 == 0;
+
+                if (isEven)
+                    image.color = globals.value.evenColor;
+                else
+                {
+                    position.y += globals.value.heightOffset;
+                    image.color = globals.value.oddColor;
+                }
+
+                rectTransform.anchoredPosition = position;
             }
         }
     }

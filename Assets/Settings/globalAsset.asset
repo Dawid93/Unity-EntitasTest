@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexagonObject: {fileID: 2464324022837403919, guid: 015c93caba3a1455bb11e8b072a0331b,
     type: 3}
+  heightSpacing: 120
+  widthSpacing: 104
+  heightOffset: 52
+  clickRadius: 25
+  evenColor: {r: 1, g: 1, b: 1, a: 1}
+  oddColor: {r: 0, g: 0.6645422, b: 1, a: 1}
