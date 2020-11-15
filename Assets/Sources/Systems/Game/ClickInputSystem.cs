@@ -17,21 +17,25 @@ namespace Sources.Systems.Game
         
         public void Execute()
         {
-            if (Input.GetMouseButtonDown(0))
+            for (int i = 0; i < 2; i++)
             {
-                var hexes = _hexagonGroup.GetEntities();
-                var mousePos = Input.mousePosition;
-
-                var clicked = hexes.OrderBy(x => (x.view.value.transform.position - mousePos).sqrMagnitude)
-                    .FirstOrDefault(x =>
-                        (x.view.value.transform.position - mousePos).magnitude <
-                        _contexts.game.globals.value.clickRadius);
-
-                if (clicked != null)
+                if (Input.GetMouseButtonDown(i))
                 {
-                    var entity = _contexts.game.CreateEntity();
-                    entity.isClickInput = true;
-                    entity.AddPosition(clicked.position.value);
+                    var hexes = _hexagonGroup.GetEntities();
+                    var mousePos = Input.mousePosition;
+
+                    var clicked = hexes.OrderBy(x => (x.view.value.transform.position - mousePos).sqrMagnitude)
+                        .FirstOrDefault(x =>
+                            (x.view.value.transform.position - mousePos).magnitude <
+                            _contexts.game.globals.value.clickRadius);
+
+                    if (clicked != null)
+                    {
+                        var entity = _contexts.game.CreateEntity();
+                        entity.isClickInput = true;
+                        entity.AddPosition(clicked.position.value);
+                        entity.AddButtonNumber(i);
+                    }
                 }
             }
         }

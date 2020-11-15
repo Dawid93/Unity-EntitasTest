@@ -22,6 +22,7 @@ namespace Sources.Systems.Game
                     gameEntity.AddPosition(new Vector2Int(j, i));
                     gameEntity.isHexagon = true;
                     gameEntity.AddHexagonType(HexagonType.Empty);
+                    gameEntity.AddHexagonRotation(0);
                 }
             }
         }

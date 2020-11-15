@@ -3,24 +3,24 @@ using Entitas;
 
 namespace Sources.Systems.Game
 {
-    public class ChangeHexagonTypeSystem : ReactiveSystem<GameEntity>
+    public class RotateHexagonSystem : ReactiveSystem<GameEntity>
     {
         private Contexts _contexts;
-        private int _hexagonTypesCount = 5;
         
-        public ChangeHexagonTypeSystem(Contexts context) : base(context.game)
+        public RotateHexagonSystem(Contexts context) : base(context.game)
         {
             _contexts = context;
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.ClickInput, GameMatcher.Position, GameMatcher.ButtonNumber));
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.ClickInput, GameMatcher.Position,
+                GameMatcher.ButtonNumber));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.isClickInput && entity.hasPosition && entity.hasButtonNumber && entity.buttonNumber.value == 0;
+            return entity.hasButtonNumber && entity.buttonNumber.value == 1;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -31,11 +31,11 @@ namespace Sources.Systems.Game
 
                 foreach (var hexagon in hexagons)
                 {
-                    if (hexagon.hasHexagonType)
+                    if (hexagon.hasHexagonRotation)
                     {
-                        var newType = (int) hexagon.hexagonType.value + 1;
-                        newType %= _hexagonTypesCount;
-                        hexagon.ReplaceHexagonType((HexagonType) newType);
+                        int newValue = hexagon.hexagonRotation.value + 1;
+                        newValue %= 6;
+                        hexagon.ReplaceHexagonRotation(newValue);
                     }
                 }
                 entity.Destroy();

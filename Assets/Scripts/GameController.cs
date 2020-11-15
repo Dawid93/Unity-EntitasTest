@@ -29,10 +29,15 @@ public class GameController : MonoBehaviour
     private Systems CreateSystems(Contexts contexts)
     {
         return new Feature("Game")
+            // Init
             .Add(new HexagonGridInitializeSystem(contexts))
             .Add(new AddHexagonViewSystem(contexts))
+            // Input
             .Add(new ClickInputSystem(contexts))
             .Add(new ChangeHexagonTypeSystem(contexts))
-            .Add(new DisplayHexagonTypeSystem(contexts));    
+            .Add(new RotateHexagonSystem(contexts))
+            // View
+            .Add(new DisplayHexagonTypeSystem(contexts))
+            .Add(new RotateHexagonViewSystem(contexts));    
     }
 }
