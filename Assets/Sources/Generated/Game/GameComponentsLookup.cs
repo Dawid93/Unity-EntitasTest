@@ -10,15 +10,17 @@ public static class GameComponentsLookup {
 
     public const int Globals = 0;
     public const int Hexagon = 1;
-    public const int Position = 2;
-    public const int UiRoot = 3;
-    public const int View = 4;
+    public const int HexagonType = 2;
+    public const int Position = 3;
+    public const int UiRoot = 4;
+    public const int View = 5;
 
-    public const int TotalComponents = 5;
+    public const int TotalComponents = 6;
 
     public static readonly string[] componentNames = {
         "Globals",
         "Hexagon",
+        "HexagonType",
         "Position",
         "UiRoot",
         "View"
@@ -27,6 +29,7 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(GlobalsComponent),
         typeof(Sources.Components.HexagonComponent),
+        typeof(Sources.Components.HexagonTypeComponent),
         typeof(Sources.Components.PositionComponent),
         typeof(Sources.Components.UiRootComponent),
         typeof(Sources.Components.ViewComponent)

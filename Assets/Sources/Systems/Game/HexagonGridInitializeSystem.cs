@@ -21,6 +21,7 @@ namespace Sources.Systems.Game
                     var gameEntity = _contexts.game.CreateEntity();
                     gameEntity.AddPosition(new Vector2Int(j, i));
                     gameEntity.isHexagon = true;
+                    gameEntity.AddHexagonType(HexagonType.Empty);
                 }
             }
         }
